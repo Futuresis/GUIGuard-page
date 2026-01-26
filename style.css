@@ -210,6 +210,12 @@ body {
     color: var(--primary-color);
 }
 
+.underline-emphasis {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--primary-color);
+}
+
 .results-table .col-divider {
     border-right: 1px solid #1f2933;
 }
