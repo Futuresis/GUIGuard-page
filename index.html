@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUIGuard: Toward a General Framework for Privacy-Preserving GUI Agents</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">
+                        <span class="guiguard-title">GUIGuard</span>: Toward a General Framework for Privacy-Preserving GUI Agents
+                    </h1>
+                    
+                    <!-- Authors -->
+                    <div class="is-size-5 publication-authors authors-list">
+                        <span class="author-block">Yanxi Wang<sup>1,2</sup><sup>*</sup></span>
+                        <span class="author-block">Zhiling Zhang<sup>3,2</sup><sup>*</sup></span>
+                        <span class="author-block">Wenbo Zhou<sup>3</sup></span>
+                        <span class="author-block">Weiming Zhang<sup>3</sup></span>
+                        <span class="author-block">Jie Zhang<sup>4</sup></span>
+                        <span class="author-block">Qiannan Zhu<sup>1</sup></span>
+                        <span class="author-block">Yu Shi<sup>2,5</sup></span>
+                        <span class="author-block">Shuxin Zheng<sup>2,5</sup></span>
+                        <span class="author-block">Jiyan He<sup>2,5</sup><sup>†</sup></span>
+                    </div>
+
+                    <!-- Affiliations -->
+                    <div class="is-size-5 publication-authors affiliations-list">
+                        <span class="author-block"><sup>1</sup>Beijing Normal University</span>
+                        <span class="author-block"><sup>2</sup>Zhongguancun Academy</span>
+                        <span class="author-block"><sup>3</sup>University of Science and Technology of China</span>
+                        <span class="author-block"><sup>4</sup>A*STAR</span>
+                        <span class="author-block"><sup>5</sup>Zhongguancun Institution of Artificial Intelligence</span>
+                    </div>
+                    <div class="is-size-6 author-notes">
+                        <span>* Equal contribution.</span>
+                        <span>† Correspondence: <a href="mailto:hejiyan@zgci.ac.cn">hejiyan@zgci.ac.cn</a></span>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- Paper Link -->
+                            <span class="link-block">
+                                <span class="external-link button is-normal is-rounded is-dark is-disabled">
+                                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                                    <span>Paper (Coming Soon)</span>
+                                </span>
+                            </span>
+                            <!-- Code Link -->
+                            <span class="link-block">
+                                <span class="external-link button is-normal is-rounded is-dark is-disabled">
+                                    <span class="icon"><i class="fab fa-github"></i></span>
+                                    <span>Code (Coming Soon)</span>
+                                </span>
+                            </span>
+                            <!-- Trajectory Workflow -->
+                            <span class="link-block">
+                                <a href="https://github.com/Futuresis/GUI-Trajectory-Virtual" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noreferrer">
+                                    <span class="icon"><i class="fab fa-github"></i></span>
+                                    <span>Trajectory Synthesis Workflow</span>
+                                </a>
+                            </span>
+                            <!-- Dataset Link -->
+                            <span class="link-block">
+                                <span class="external-link button is-normal is-rounded is-dark is-disabled">
+                                    <span class="icon">🤗</span>
+                                    <span>Dataset (Coming Soon)</span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Teaser Image -->
+<section class="hero teaser">
+    <div class="container is-max-desktop">
+        <div class="hero-body">
+            <div class="teaser-figure figure-box">
+                <img src="images/framework.png" alt="GUIGuard Framework" class="figure-image">
+            </div>
+            <p class="teaser-caption has-text-justified">
+                <strong>Figure 1:</strong> Overview of the GUIGuard Framework and Benchmark. The top section shows GUIGuard’s three-phase pipeline: (1) Privacy Recognition localizes sensitive elements; (2) Privacy Protection sanitizes them (e.g., masking, semantic replacement, latent perturbation); and (3) Task Execution uses a remote agent to act on protected screenshots. In contrast, conventional GUI agents typically include only Phase (3), directly sending raw screenshots to the cloud. The bottom section illustrates GUIGuard-Bench construction, where collected trajectories are human-annotated with grounding boxes, risk grades, and categories to evaluate all phases.
+            </p>
+            <h2 class="subtitle has-text-centered mt-5">
+                <strong>GUIGuard</strong> is a general-purpose privacy-preserving framework for GUI agents that aims to safeguard sensitive information while preserving task performance.
+            </h2>
+        </div>
+    </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        GUI agents are rapidly evolving and are beginning to appear in computer and mobile applications for automated use, enabling end-to-end automation through direct perception of and interaction with on-screen interfaces.
+However, these agents may frequently access user interfaces containing highly sensitive personal information, and in practice screenshots are often transmitted to remote models for inference, creating substantial privacy risks during daily use. These risks are particularly severe and distinctive in GUI agent workflows: compared with other visual carriers, GUIs expose richer and more directly accessible private information, and privacy risks are highly dependent on interaction trajectories and contextual continuity, requiring assessment across sequential scenes.
+Based on these observations, we propose \textbf{GUIGuard}, a general three-stage framework for privacy-preserving GUI agents consisting of (1) privacy recognition, (2) privacy protection, and (3) task execution under protection.
+To effectively analyze privacy risks in GUI agent workflows and to rigorously evaluate GUIGuard and future protection methods, we further construct \textbf{GUIGuard-Bench}, a cross-platform benchmark containing 630 GUI agent trajectories with 13{,}830 screenshots, annotated with region-level privacy grounding as well as fine-grained labels of risk level, privacy category, and task necessity.
+Evaluations on GUIGuard-Bench reveal that existing agents exhibit limited privacy recognition, with the sate-of-the-art model achieving end-to-end accuracies of only 13.3\% on Android and 1.4\% on PC; meanwhile, under privacy protection, task-planning semantics can still be maintained to an acceptable level, where closed-source models show substantially stronger semantic consistency than open-source ones. 
+Finally, the case study on the MobileWorld online dataset shows that carefully designed privacy protection strategies can strike a better balance, achieving higher task accuracy while still preserving adequate privacy.
+Our results highlight privacy recognition as a critical bottleneck for practical GUI agents and point to concrete directions for building safer, privacy-aware GUI agent systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Framework Overview -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Framework Overview</h2>
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <div class="content has-text-justified abstract-content">
+                    <p>
+                        <strong>Privacy Detection Module.</strong> This stage answers “what should be protected.” It produces a structured privacy representation that guides downstream protection, including (i) spatial localization of sensitive regions (e.g., regions or bounding boxes), (ii) semantic categories and risk levels, and (iii) whether each item is necessary for the current task. Detection combines textual signals from the interaction context to maintain step consistency. At the system level, this module prioritizes high recall and auditability, preferring conservative triggers over the irreversible risk of missing critical sensitive content.
+                    </p>
+                    <p>
+                        <strong>Privacy Protection Module.</strong> This stage answers “how to protect.” It maps detected regions to a configurable set of sanitization operators and policy compositions, making the trade-off between privacy and interface fidelity explicit. The system may use masking, text replacement, and similar techniques based on risk and task requirements. Auditable policies should sanitize sensitive information sufficiently to prevent reconstruction, while avoiding over-sanitization that leads to unrecognizable elements, grounding failures, or plan drift.
+                    </p>
+                    <p>
+                        <strong>Task Execution Module.</strong> This stage answers “whether tasks remain solvable after privacy protection.” Under a privacy-protected interface and task context, the system generates executable action plans and interacts with a real GUI. Unlike conventional end-to-end GUI agents, the execution process is explicitly constrained by partial observability, where sensitive visual information may be masked or removed. As a result, the agent must reason over historical trajectories and residual visual cues to infer and execute subsequent actions. Effectiveness is evaluated using end-to-end task success rate, semantic consistency of planning outputs, and grounding accuracy. By jointly considering the quality of privacy detection and the effectiveness of protection strategies, these criteria establish a quantifiable and comparable closed-loop framework for evaluating privacy-preserving GUI agents.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dataset -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Dataset</h2>
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <div class="figure-box">
+                    <img src="images/dataset.png" alt="GUIGuard Dataset Structure" class="figure-image">
+                </div>
+                <p class="has-text-justified is-size-6 mt-3 dataset-caption">
+                    The dataset structure is illustrated above. It consists of 240 trajectories (4,080 screenshots) collected from real-world terminal platform scenarios and 390 trajectories (8,587 screenshots) generated using image-generation models. Each screenshot includes textual logs of the agent’s interactions. Privacy-related regions are annotated with three risk levels and six semantic categories, and task-required privacy is explicitly marked to enable benchmarking across recognition, protection, and execution phases.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trajectory Synthesis Workflow -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Trajectory Synthesis Workflow</h2>
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <div class="figure-box">
+                    <img src="images/workflow.png" alt="GUI-Trajectory-Virtual Workflow" class="figure-image">
+                </div>
+                <p class="has-text-justified is-size-6 mt-3 dataset-caption">
+                    <a href="https://github.com/Futuresis/GUI-Trajectory-Virtual" target="_blank" rel="noreferrer">GUI-Trajectory-Virtual</a> alternates between an image-generation model and the GUI agent. Starting from the initial task and a real screenshot, the generator synthesizes the next-step GUI state. The resulting screenshot and task description are fed to the agent to produce the next action plan, which—together with historical screenshots—is used to synthesize the subsequent screenshot. This loop continues until the task completes, and all generated plans plus screenshots are collected into the final dataset.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Privacy Recognition Evaluation Results -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Privacy Recognition Evaluation Results</h2>
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <div class="figure-box">
+                    <img src="images/combined_metrics_iou0.6.png" alt="Privacy recognition metrics across PC and Android" class="figure-image">
+                </div>
+                <p class="has-text-justified is-size-6 mt-3 dataset-caption">
+                    Privacy recognition results on GUIGuard-Bench for both PC (blue) and Android (red) devices: left shows binary privacy-detection accuracy (whether a screenshot contains any sensitive content), middle shows privacy recall (percentage of ground-truth private elements retrieved), and right reports the overall end-to-end accuracy that requires correct detection alongside all fine-grained labels (risk level, category, and task necessity).
+                </p>
+                <div class="figure-box mt-5">
+                    <img src="images/label_accuracy_combined_iou0.6.png" alt="Fine-grained privacy label accuracy results" class="figure-image">
+                </div>
+                <p class="has-text-justified is-size-6 mt-3 dataset-caption">
+                    Fine-grained privacy label recognition on GUIGuard-Bench. For private elements that pass text matching and are correctly localized (IoU ≥ 0.6), we report the accuracy of predicting risk level, privacy category, and task necessity across VLMs on PC (blue) and Android (red).
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Task Execution & Protection Fidelity Evaluation Results -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Task Execution &amp; Protection Fidelity Evaluation Results</h2>
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <div class="figure-box">
+                    <img src="images/task_execution.png" alt="Task execution and protection fidelity evaluation" class="figure-image">
+                </div>
+                <p class="has-text-justified is-size-6 mt-3 dataset-caption">
+                    The planner is the module most relied upon by modern agents for remote services; thus, variations in its performance directly reflect changes in execution ability and privacy-protection fidelity. The grounding module is removed and subsequent screenshots are treated as step outcomes, enabling direct evaluation of planner outputs. Planning traces produced with privacy-masked screenshots are compared against the agent’s own unprotected baselines via a self-comparison protocol that reuses identical inputs and task contexts. An LLM-as-Judge scores semantic consistency at each step to quantify the fidelity of privacy protection.
+                </p>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <caption>
+                            Three GUI-agent models and four general-purpose models evaluated by LLM-as-Judge for semantic consistency (0–4 scale) before and after privacy protection under black masking, mosaic masking, random block masking, and text-box replacement.
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th class="col-divider">Model</th>
+                                <th>Black Mask</th>
+                                <th>Mosaic Mask</th>
+                                <th>Random Blocks</th>
+                                <th class="col-textbox-divider">Text Box Replace</th>
+                                <th>Android Avg.</th>
+                                <th>PC Avg.</th>
+                                <th>Overall Avg.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">GUI Agent</td>
+                                <td class="col-divider">UI-Tars-1.5-7B</td>
+                                <td>1.16</td>
+                                <td>1.44</td>
+                                <td>0.88</td>
+                                <td class="col-textbox-divider">1.01</td>
+                                <td>1.27</td>
+                                <td>0.95</td>
+                                <td>1.11</td>
+                            </tr>
+                            <tr>
+                                <td class="col-divider">Fara-7B</td>
+                                <td>2.02</td>
+                                <td>1.94</td>
+                                <td>2.11</td>
+                                <td class="col-textbox-divider">1.95</td>
+                                <td>2.34</td>
+                                <td>1.69</td>
+                                <td>2.04</td>
+                            </tr>
+                            <tr>
+                                <td class="col-divider">GUI-Owl-7B</td>
+                                <td>2.56</td>
+                                <td>2.50</td>
+                                <td>2.85</td>
+                                <td class="col-textbox-divider">2.32</td>
+                                <td>2.63</td>
+                                <td>2.47</td>
+                                <td>2.55</td>
+                            </tr>
+                            <tr>
+                                <td>Open-source VLM</td>
+                                <td class="col-divider">Qwen3-VL-235B-A22B</td>
+                                <td>2.71</td>
+                                <td>2.92</td>
+                                <td>2.63</td>
+                                <td class="col-textbox-divider">2.63</td>
+                                <td>2.92</td>
+                                <td>2.52</td>
+                                <td>2.73</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">Closed-source VLM</td>
+                                <td class="col-divider">Claude-Sonnet-4.5</td>
+                                <td>2.87</td>
+                                <td>2.74</td>
+                                <td>3.00</td>
+                                <td class="col-textbox-divider">3.03</td>
+                                <td>3.44</td>
+                                <td>2.42</td>
+                                <td>2.96</td>
+                            </tr>
+                            <tr>
+                                <td class="col-divider">GPT-5.2</td>
+                                <td>3.33</td>
+                                <td>3.30</td>
+                                <td>3.44</td>
+                                <td class="col-textbox-divider">3.17</td>
+                                <td>3.33</td>
+                                <td><strong>3.28</strong></td>
+                                <td>3.31</td>
+                            </tr>
+                            <tr>
+                                <td class="col-divider">Gemini-3-Pro</td>
+                                <td>3.32</td>
+                                <td>3.42</td>
+                                <td>3.40</td>
+                                <td class="col-textbox-divider">3.22</td>
+                                <td><strong>3.45</strong></td>
+                                <td>3.24</td>
+                                <td><strong>3.35</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="col-divider">Fidelity of Protection Methods</td>
+                                <td>2.57</td>
+                                <td>2.61</td>
+                                <td><strong>2.62</strong></td>
+                                <td class="col-textbox-divider">2.48</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+        <h2 class="title is-3">BibTeX</h2>
+        <div class="bibtex-container">
+            <pre><code>@article{guiguard2025,
+  title={GUIGuard: Toward a General Framework for Privacy-Preserving GUI Agents},
+  author={Author, First and Author, Second and Author, Third},
+  journal={arXiv preprint arXiv:2501.xxxxx},
+  year={2025}
+}</code></pre>
+            <button class="button is-small copy-btn" onclick="copyBibtex()">
+                <span class="icon"><i class="fas fa-copy"></i></span>
+                <span>Copy</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                This website template is borrowed from <a href="https://nerfies.github.io/" target="_blank">Nerfies</a> and <a href="https://os-world.github.io/" target="_blank">OSWorld</a>.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function copyBibtex() {
+        const bibtex = document.querySelector('.bibtex-container code').textContent;
+        navigator.clipboard.writeText(bibtex).then(() => {
+            const btn = document.querySelector('.copy-btn span:last-child');
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+    }
+</script>
+
+</body>
+</html>
