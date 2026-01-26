@@ -213,7 +213,9 @@ body {
 .underline-emphasis {
     text-decoration: underline;
     text-decoration-thickness: 2px;
-    text-decoration-color: var(--primary-color);
+    text-decoration-color: #1f2933;
+    color: #1f2933;
+    font-weight: 500;
 }
 
 .results-table .col-divider {
